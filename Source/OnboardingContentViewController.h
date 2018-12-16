@@ -38,6 +38,7 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
  */
 @property (nonatomic) BOOL movesToNextViewController;
 
+@property (nonatomic, assign) BOOL visible;
 
 /**
  * @brief The image view used to show the top icon.

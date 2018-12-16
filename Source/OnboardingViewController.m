@@ -253,6 +253,16 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+#pragma mark - Extra
+
+- (void)setCurrentIndexVisible: (NSUInteger)index {
+    [self.viewControllers enumerateObjectsUsingBlock:^(OnboardingContentViewController  *controller,
+                                                       NSUInteger idx,
+                                                       BOOL * _Nonnull stop) {
+        controller.visible = idx != index ? YES : NO;
+    }];
+}
+
 
 #pragma mark - Skipping
 
@@ -306,6 +316,7 @@ static NSString * const kSkipButtonText = @"Skip";
     UIViewController *viewController = [pageViewController.viewControllers lastObject];
     NSInteger newIndex = [self.viewControllers indexOfObject:viewController];
     [self.pageControl setCurrentPage:newIndex];
+    [self setCurrentIndexVisible:newIndex];
 }
 
 - (void)moveNextPage {
@@ -314,6 +325,7 @@ static NSString * const kSkipButtonText = @"Skip";
     if (indexOfNextPage < self.viewControllers.count) {
         [self.pageVC setViewControllers:@[self.viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         [self.pageControl setCurrentPage:indexOfNextPage];
+        [self setCurrentIndexVisible:indexOfNextPage];
     }
 }
 
