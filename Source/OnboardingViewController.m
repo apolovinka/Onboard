@@ -259,7 +259,7 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.viewControllers enumerateObjectsUsingBlock:^(OnboardingContentViewController  *controller,
                                                        NSUInteger idx,
                                                        BOOL * _Nonnull stop) {
-        controller.visible = idx != index ? YES : NO;
+        controller.visible = idx == index ? YES : NO;
     }];
 }
 
